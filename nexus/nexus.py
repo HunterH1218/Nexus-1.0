@@ -2,7 +2,6 @@ from nexus.functions import run_functions
 from nexus.functions.argument_model import argument_assignment
 from nexus.nexus_base_model import text_model
 
-
 def main(prompts):
   results = []
   prompt_list = prompts.split(';')
@@ -20,7 +19,4 @@ def main(prompts):
           return "No results returned. Please check if the function that was ran returns the answer, not prints it."
       elif results != "":
           return "\n".join(results)
-
-
-
 

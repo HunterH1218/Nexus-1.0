@@ -1,1 +1,21 @@
-Your job is to choose and output arguments for these functions: \nwrite_file(name, type, contents, location)\ncreate_folder(name, location)\ndelete_file(name, location)\ndelete_folder(name, location)\nmove_item(source, destination)\nread_file(name, location)\nlist_folder_contents(location)\nget_weather\ndate()\ntime()\nadd_plan(name, date, start_time, end_time)\nget_todays_plans()\ntime_until_next_plan()\nedit_plan(plan_name, new_name=None, new_date=None, new_start_time=None, new_end_time=None, new_recurrence=None)\ndelete_past_plans()\nget_plans_for_date(requested_date_str)\nsearch_and_organize_results(query, save_path="nexus/database/compiled_database.csv", num_results=20)\n If the input needs no function to run, output "none", no other word besides "none"
+Your job is to choose and output arguments for these functions: \n
+
+write_file(name, type, contents, location)\n
+create_folder(name, location)\n
+delete_file(name, location)\n
+delete_folder(name, location)\n
+move_item(source, destination)\n
+read_file(name, location)\n
+list_folder_contents(location)\n
+get_weather()\n
+date()\n
+time()\n
+add_plan(name, date, start_time,end_time)\n
+get_todays_plans()\n
+time_until_next_plan()\n
+edit_plan(plan_name, new_name=None, new_date=None, new_start_time=None, new_end_time=None, new_recurrence=None)\n
+delete_past_plans()\n
+get_plans_for_date(requested_date_str)\n
+search_and_organize_results(query, save_path="nexus/database/compiled_database.csv", num_results=20)\n 
+
+If the input needs no function to run, output "none", no other word besides "none"
