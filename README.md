@@ -29,6 +29,27 @@ Nexus is an AI assistant designed to provide various helpful functionalities lik
    pip install -r requirements.txt
    ```
 
+## API Configuration
+
+Nexus utilizes several external APIs to provide enriched functionality. Here are steps to configure the necessary APIs:
+
+1. **GEMINI API Configuration**
+   Nexus uses the Gemini API for generating AI responses.
+   - **Get the API Key**: Register on the <a href="https://aistudio.google.com/apikey" target="_blank">Gemini API platform</a>  and obtain your API key.
+   - **Set the API Key**: Store the `GEMINI_API_KEY` as an environment variable on your system. This can be done by adding the following line to your `.bashrc`, `.zshrc`, or equivalent configuration file:
+     ```bash
+     export GEMINI_API_KEY='your_actual_api_key_here'
+     ```
+
+2. **Weather API Configuration**
+
+   For weather updates, Nexus uses the Open-Meteo API.
+
+   - Navigate to `nexus/weather/current.py`.
+   - Set your geographical coordinates (latitude and longitude) for the location you want weather updates for.
+
+
+
 ## Usage
 Run the AI assistant with the entry point script:
 ```bash
