@@ -35,7 +35,7 @@ Nexus utilizes several external APIs to provide enriched functionality. Here are
 
 1. **GEMINI API Configuration**
    Nexus uses the Gemini API for generating AI responses.
-   - **Get the API Key**: Register on the <a href="https://aistudio.google.com/apikey" target="_blank">Gemini API platform</a>  and obtain your API key.
+   - **Get the API Key**: Register on the <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer">Gemini API platform</a>  and obtain your API key.
    - **Set the API Key**: Store the `GEMINI_API_KEY` as an environment variable on your system. This can be done by adding the following line to your `.bashrc`, `.zshrc`, or equivalent configuration file:
      ```bash
      export GEMINI_API_KEY='your_actual_api_key_here'
