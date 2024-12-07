@@ -104,11 +104,11 @@ def get_weather():
 
 
 def add_plan(name, date, start_time, end_time):
-    if not os.path.exists('my_calendar/calendar.json'):
-        with open('my_calendar/calendar.json', 'w') as file:
+    if not os.path.exists('nexus/my_calendar/calendar.json'):
+        with open('nexus/nexus/my_calendar/calendar.json', 'w') as file:
             json.dump({"plans": []}, file)
 
-    with open('my_calendar/calendar.json', 'r') as file:
+    with open('nexus/my_calendar/calendar.json', 'r') as file:
         data = json.load(file)
 
     new_plan = {
@@ -119,7 +119,7 @@ def add_plan(name, date, start_time, end_time):
     }
     data['plans'].append(new_plan)
 
-    with open('my_calendar/calendar.json', 'w') as file:
+    with open('nexus/my_calendar/calendar.json', 'w') as file:
         json.dump(data, file, indent=5)
 
     return f"Plan '{name}' was successfully added to the calendar."
@@ -127,7 +127,7 @@ def add_plan(name, date, start_time, end_time):
 
 def delete_past_plans():
     # Define the path to the calendar file
-    file_path = 'my_calendar/calendar.json'
+    file_path = 'nexus/my_calendar/calendar.json'
     if not os.path.exists(file_path):
         print("Calendar file does not exist.")
         return "Calendar file does not exist."
@@ -172,7 +172,7 @@ def delete_past_plans():
 
 def get_todays_plans():
     # Define the path to the calendar file
-    file_path = 'my_calendar/calendar.json'
+    file_path = 'nexus/my_calendar/calendar.json'
     if not os.path.exists(file_path):
         print("Calendar file does not exist.")
         return []
@@ -207,7 +207,7 @@ def get_todays_plans():
 
 def time_until_next_plan():
     # Define the path to the calendar file
-    file_path = 'my_calendar/calendar.json'
+    file_path = 'nexus/my_calendar/calendar.json'
     if not os.path.exists(file_path):
         print("Calendar file does not exist.")
         return None
@@ -255,7 +255,7 @@ def edit_plan(plan_name,
               new_start_time=None,
               new_end_time=None):
     # Define the path to the calendar file
-    file_path = 'my_calendar/calendar.json'
+    file_path = 'nexus/my_calendar/calendar.json'
 
     if not os.path.exists(file_path):
         print("Calendar file does not exist.")
@@ -295,7 +295,7 @@ def edit_plan(plan_name,
 
 
 def get_plans_for_date(requested_date_str):
-    file_path = 'my_calendar/calendar.json'
+    file_path = 'nexus/my_calendar/calendar.json'
     if not os.path.exists(file_path):
         print("Calendar file does not exist.")
         return []
