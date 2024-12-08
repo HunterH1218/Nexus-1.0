@@ -9,6 +9,7 @@ Nexus is an AI assistant designed to provide various helpful functionalities lik
 - **File Operations**: Create, read, and delete files and directories.
 - **Calendar Management**: Add, edit, and delete plans.
 - **Web Search**: Search for information using the Google search engine.
+- **Measurement Unit Conversion**: Convert measurement units (e.g., 10 miles to inches)
 
 ## Installation
 
