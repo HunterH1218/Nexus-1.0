@@ -70,6 +70,8 @@ def function_call(prompt):
       result_var = get_plans_for_date(**args)
   elif function_name == "search_and_organize_results":
       result_var = search_and_organize_results(**args)
+  elif function_name == "get_seven_day_forecast":
+      result_var = get_seven_day_forecast(**args)
   else:
       result_var = "An error has occurred sir, no function found."
 

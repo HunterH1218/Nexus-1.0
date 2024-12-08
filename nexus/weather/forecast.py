@@ -1,49 +1,81 @@
-import openmeteo_requests
+import requests
 
-import requests_cache
-import pandas as pd
-from retry_requests import retry
-
-# Setup the Open-Meteo API client with cache and retry on error
-cache_session = requests_cache.CachedSession('.cache', expire_after = 3600)
-retry_session = retry(cache_session, retries = 5, backoff_factor = 0.2)
-openmeteo = openmeteo_requests.Client(session = retry_session)
-
-# Make sure all required weather variables are listed here
-# The order of variables in hourly or daily is important to assign them correctly below
-url = "https://api.open-meteo.com/v1/forecast"
-params = {
-    "latitude": 40.142180,
-    "longitude": -75.864470,
-    "hourly": ["temperature_2m", "precipitation", "snow_depth", "weather_code"],
-    "forecast_days": 1
+# Mapping weather code to description
+weather_descriptions = {
+    0: "Clear sky",
+    1: "Mainly clear",
+    2: "Partly cloudy",
+    3: "Overcast",
+    45: "Fog",
+    48: "Depositing rime fog",
+    51: "Light drizzle",
+    53: "Moderate drizzle",
+    55: "Dense drizzle",
+    56: "Light freezing drizzle",
+    57: "Dense freezing drizzle",
+    61: "Slight rain",
+    63: "Moderate rain",
+    65: "Heavy rain",
+    66: "Light freezing rain",
+    67: "Heavy freezing rain",
+    71: "Slight snow fall",
+    73: "Moderate snow fall",
+    75: "Heavy snow fall",
+    77: "Snow grains",
+    80: "Slight rain showers",
+    81: "Moderate rain showers",
+    82: "Violent rain showers",
+    85: "Slight snow showers",
+    86: "Heavy snow showers",
+    95: "Thunderstorm",
+    96: "Thunderstorm with slight hail",
+    99: "Thunderstorm with heavy hail"
 }
-responses = openmeteo.weather_api(url, params=params)
 
-# Process first location. Add a for-loop for multiple locations or weather models
-response = responses[0]
-print(f"Coordinates {response.Latitude()}°N {response.Longitude()}°E")
-print(f"Elevation {response.Elevation()} m asl")
-print(f"Timezone {response.Timezone()} {response.TimezoneAbbreviation()}")
-print(f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
+def celsius_to_fahrenheit(celsius):
+    return (celsius * 9/5) + 32
 
-# Process hourly data. The order of variables needs to be the same as requested.
-hourly = response.Hourly()
-hourly_temperature_2m = hourly.Variables(0).ValuesAsNumpy()
-hourly_precipitation = hourly.Variables(1).ValuesAsNumpy()
-hourly_snow_depth = hourly.Variables(2).ValuesAsNumpy()
-hourly_weather_code = hourly.Variables(3).ValuesAsNumpy()
+def mm_to_inches(mm):
+    return mm * 0.0393701
 
-hourly_data = {"date": pd.date_range(
-    start = pd.to_datetime(hourly.Time(), unit = "s", utc = True),
-    end = pd.to_datetime(hourly.TimeEnd(), unit = "s", utc = True),
-    freq = pd.Timedelta(seconds = hourly.Interval()),
-    inclusive = "left"
-)}
-hourly_data["temperature_2m"] = hourly_temperature_2m
-hourly_data["precipitation"] = hourly_precipitation
-hourly_data["snow_depth"] = hourly_snow_depth
-hourly_data["weather_code"] = hourly_weather_code
+def get_seven_day_forecast():
+    latitude = 40.7128
+    longitude = -74.0060
+    endpoint = f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode&timezone=auto"
 
-hourly_dataframe = pd.DataFrame(data = hourly_data)
-print(hourly_dataframe)
+    response = requests.get(endpoint)
+
+    if response.status_code == 200:
+        forecast_data = response.json()
+        daily_data = forecast_data.get('daily', {})
+        temperatures_max = daily_data.get('temperature_2m_max', [])
+        temperatures_min = daily_data.get('temperature_2m_min', [])
+        precipitation = daily_data.get('precipitation_sum', [])
+        weather_conditions = daily_data.get('weathercode', [])
+        time = daily_data.get('time', [])
+
+        forecast_list = []
+
+        for day, max_temp, min_temp, precip, condition in zip(time, temperatures_max, temperatures_min, precipitation, weather_conditions):
+            forecast_entry = {
+                "date": day,
+                "max_temperature": celsius_to_fahrenheit(max_temp),
+                "min_temperature": celsius_to_fahrenheit(min_temp),
+                "precipitation": mm_to_inches(precip),
+                "weather_condition": weather_descriptions.get(condition, "Unknown condition")
+            }
+            forecast_list.append(forecast_entry)
+
+        # Return formatted result
+        formatted_result = "\n".join(
+            f"Date: {entry['date']}\n"
+            f"Max Temperature: {entry['max_temperature']:.2f}°F\n"
+            f"Min Temperature: {entry['min_temperature']:.2f}°F\n"
+            f"Precipitation: {entry['precipitation']:.2f} inches\n"
+            f"Weather Condition: {entry['weather_condition']}\n"
+            for entry in forecast_list
+        )
+        return formatted_result
+    else:
+        return f"Error: Failed to retrieve data. Status code: {response.status_code}"
+

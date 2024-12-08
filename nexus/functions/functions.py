@@ -6,7 +6,7 @@ import json
 import requests
 import requests
 from bs4 import BeautifulSoup
-from nexus.weather import current
+from nexus.weather import current, forecast
 import random
 import pandas as pd
 
@@ -372,3 +372,7 @@ def search_and_organize_results(query, save_path="nexus/database/compiled_databa
 
     except Exception as e:
         return f"Error: {e}"
+
+
+def get_seven_day_forecast():
+    return forecast.get_seven_day_forecast()

@@ -17,5 +17,6 @@ edit_plan(plan_name, new_name=None, new_date=None, new_start_time=None, new_end_
 delete_past_plans()\n
 get_plans_for_date(requested_date_str)\n
 search_and_organize_results(query, save_path="nexus/database/compiled_database.csv", num_results=20)\n 
+get_seven_day_forecast()\n
 
 If the input needs no function to run, output "none", no other word besides "none"

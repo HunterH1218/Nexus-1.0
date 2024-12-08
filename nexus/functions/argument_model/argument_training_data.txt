@@ -13,4 +13,6 @@
 "input: delete hi.txt",
 "output: ```\nfunction_name = delete_file\nname = hi.txt\nlocation = \n```",
 "input: search for openai",
-"output: ```\nfunction_name = search_and_organize_results\nquery = openai\n```"
+"output: ```\nfunction_name = search_and_organize_results\nquery = openai\n```",
+"input: what will the weather be?",
+"output: ```\nfunction_name = get_seven_day_forecast\n```,
