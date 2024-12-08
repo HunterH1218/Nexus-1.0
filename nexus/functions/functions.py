@@ -11,6 +11,9 @@ import random
 import pandas as pd
 
 
+# 27 Functions total.
+
+
 def write_file(name, type, contents, location):
     filename = f"{name}.{type}"
     filepath = os.path.join(location, filename)
@@ -376,3 +379,61 @@ def search_and_organize_results(query, save_path="nexus/database/compiled_databa
 
 def get_seven_day_forecast():
     return forecast.get_seven_day_forecast()
+
+
+def convert_units(value, from_unit, to_unit):
+    conversion_factors = {
+        'meters': {
+            'kilometers': 0.001,
+            'miles': 0.000621371,
+            'feet': 3.28084,
+            'inches': 39.3701,
+            'centimeters': 100
+        },
+        'kilometers': {
+            'meters': 1000,
+            'miles': 0.621371,
+            'feet': 3280.84,
+            'inches': 39370.1,
+            'centimeters': 100000
+        },
+        'miles': {
+            'meters': 1609.34,
+            'kilometers': 1.60934,
+            'feet': 5280,
+            'inches': 63360,
+            'centimeters': 160934
+        },
+        'feet': {
+            'meters': 0.3048,
+            'kilometers': 0.0003048,
+            'miles': 0.000189394,
+            'inches': 12,
+            'centimeters': 30.48
+        },
+        'inches': {
+            'meters': 0.0254,
+            'kilometers': 0.0000254,
+            'miles': 0.0000157828,
+            'feet': 0.0833333,
+            'centimeters': 2.54
+        },
+        'centimeters': {
+            'meters': 0.01,
+            'kilometers': 0.00001,
+            'miles': 0.00000621371,
+            'feet': 0.0328084,
+            'inches': 0.393701
+        }
+    }
+    # Convert the value to float if it's a string
+    if isinstance(value, str):
+        try:
+            value = float(value)
+        except ValueError:
+            return f"Provided value '{value}' cannot be converted to a number."
+    if from_unit in conversion_factors and to_unit in conversion_factors[from_unit]:
+        converted_value = value * conversion_factors[from_unit][to_unit]
+        return f"{value} {from_unit} is equal to {converted_value} {to_unit}."
+    else:
+        return f"Conversion from {from_unit} to {to_unit} is not supported."

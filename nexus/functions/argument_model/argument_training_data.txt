@@ -16,3 +16,7 @@
 "output: ```\nfunction_name = search_and_organize_results\nquery = openai\n```",
 "input: what will the weather be?",
 "output: ```\nfunction_name = get_seven_day_forecast\n```,
+"input: convert ten inches to miles.",
+"output: ```\nfunction_name = convert_units\nvalue = 10\nfrom_unit = inches\nto_unit = miles\n```",
+"input: convert one inch to mile",
+"output: ```\nfunction_name = convert_units\nvalue = 1\nfrom_unit = inches\nto_unit = miles\n```",

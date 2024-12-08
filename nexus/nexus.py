@@ -11,6 +11,7 @@ def main(prompts):
       if not prompt:
           continue
       response = argument_assignment.generate_response(prompt)
+      print(response)
       if "none" in response.strip():
           results.append(text_model.generate_response(prompt))
       else:

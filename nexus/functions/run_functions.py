@@ -72,6 +72,8 @@ def function_call(prompt):
       result_var = search_and_organize_results(**args)
   elif function_name == "get_seven_day_forecast":
       result_var = get_seven_day_forecast(**args)
+  elif function_name == "convert_units":
+      result_var = convert_units(**args)
   else:
       result_var = "An error has occurred sir, no function found."
 

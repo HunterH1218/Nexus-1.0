@@ -18,5 +18,6 @@ delete_past_plans()\n
 get_plans_for_date(requested_date_str)\n
 search_and_organize_results(query, save_path="nexus/database/compiled_database.csv", num_results=20)\n 
 get_seven_day_forecast()\n
+convert_units(value, from_unit, to_unit)\n
 
 If the input needs no function to run, output "none", no other word besides "none"
