@@ -60,7 +60,7 @@ Now, you can interact with Nexus by typing in the console. You can try things li
 * "Create a file named test.txt"
 * "Add a plan for March 15th: meeting from 10:00 AM to 11:00 AM."
 * "What's the weather"
-> You will need to configure your latitude and longitude in nexus/weather/current.py for weather to work
+> You will need to configure your latitude and longitude in nexus/weather/current.py for weather to work. Latitude and longitude currently set to New York coordinates.
 
 ## Project Structure
 * main.py: The main script to interact with the Nexus AI Assistant.
