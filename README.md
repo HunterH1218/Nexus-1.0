@@ -69,8 +69,7 @@ Now, you can interact with Nexus by typing in the console. You can try things li
 * pyproject.toml: Project dependency and configuration file.
 * .replit: Configuration file for the Replit environment.
 
-## Additional Notes
-> The forecast.py is left as a current beta feature, and cannot be used in the AI chat.
+
 
 ## Contributing
 We welcome contributions! Please fork the repository and submit a pull request for any bug fixes or enhancements.
