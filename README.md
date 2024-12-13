@@ -15,8 +15,8 @@ Nexus is an AI assistant designed to provide various helpful functionalities lik
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/nexus-ai-assistant.git
-   cd nexus-ai-assistant
+   git clone https://github.com/HunterH1218/Nexus-1.0.git
+   cd Nexus-1.0
    ```
 
 2. **Install Dependencies**
