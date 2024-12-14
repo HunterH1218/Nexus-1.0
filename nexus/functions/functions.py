@@ -6,7 +6,7 @@ import json
 import requests
 import requests
 from bs4 import BeautifulSoup
-from nexus.weather import current, forecast
+from nexus.weather import current, forecast, daily_forecast
 import random
 import pandas as pd
 
@@ -437,3 +437,8 @@ def convert_units(value, from_unit, to_unit):
         return f"{value} {from_unit} is equal to {converted_value} {to_unit}."
     else:
         return f"Conversion from {from_unit} to {to_unit} is not supported."
+
+
+
+def daily_forecast():
+    return daily_forecast.daily_forecast()
