@@ -77,7 +77,7 @@ def function_call(prompt):
   elif function_name == "daily_forecast":
       result_var = daily_forecast()
   else:
-      result_var = "An error has occurred sir, no function found."
+      result_var = "An error has occurred, no function found."
 
   return result_var
 
