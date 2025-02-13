@@ -35,7 +35,7 @@ def function_call(prompt):
   if function_name is None:
       return "Invalid input: No function name specified"
 
-  # Call the appropriate function with arguments
+  # 20 functions total
   if function_name == "write_file":
       result_var = write_file(**args)
   elif function_name == "create_folder":
